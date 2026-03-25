@@ -9,6 +9,16 @@ import type {
   SubmitResponseVariables,
 } from '../types/form';
 
+function extractData<T>(response: { data?: T; errors?: { message: string }[] }): T {
+  if (response.errors?.length) {
+    throw new Error(response.errors[0].message);
+  }
+  if (!response.data) {
+    throw new Error('No data returned from server');
+  }
+  return response.data;
+}
+
 export const api = createApi({
   reducerPath: 'api',
   baseQuery: fetchBaseQuery({
@@ -18,6 +28,7 @@ export const api = createApi({
       return headers;
     },
   }),
+  tagTypes: ['Form', 'Response'],
   endpoints: builder => ({
     getForms: builder.query<GetFormsResponse, void>({
       query: () => ({
@@ -35,7 +46,9 @@ export const api = createApi({
           `,
         },
       }),
-      transformResponse: (response: { data: GetFormsResponse }) => response.data,
+      transformResponse: (response: { data?: GetFormsResponse; errors?: { message: string }[] }) =>
+        extractData(response),
+      providesTags: ['Form'],
     }),
 
     createForm: builder.mutation<CreateFormResponse, CreateFormVariables>({
@@ -53,7 +66,11 @@ export const api = createApi({
           variables,
         },
       }),
-      transformResponse: (response: { data: CreateFormResponse }) => response.data,
+      transformResponse: (response: {
+        data?: CreateFormResponse;
+        errors?: { message: string }[];
+      }) => extractData(response),
+      invalidatesTags: ['Form'],
     }),
 
     getForm: builder.query<GetFormResponse, string>({
@@ -79,7 +96,9 @@ export const api = createApi({
           variables: { id },
         },
       }),
-      transformResponse: (response: { data: GetFormResponse }) => response.data,
+      transformResponse: (response: { data?: GetFormResponse; errors?: { message: string }[] }) =>
+        extractData(response),
+      providesTags: (result, error, id) => [{ type: 'Form', id }],
     }),
 
     submitResponse: builder.mutation<SubmitResponseResponse, SubmitResponseVariables>({
@@ -97,7 +116,11 @@ export const api = createApi({
           variables,
         },
       }),
-      transformResponse: (response: { data: SubmitResponseResponse }) => response.data,
+      transformResponse: (response: {
+        data?: SubmitResponseResponse;
+        errors?: { message: string }[];
+      }) => extractData(response),
+      invalidatesTags: (result, error, { formId }) => [{ type: 'Response', id: formId }],
     }),
 
     getResponses: builder.query<GetResponsesResponse, string>({
@@ -121,7 +144,11 @@ export const api = createApi({
           variables: { formId },
         },
       }),
-      transformResponse: (response: { data: GetResponsesResponse }) => response.data,
+      transformResponse: (response: {
+        data?: GetResponsesResponse;
+        errors?: { message: string }[];
+      }) => extractData(response),
+      providesTags: (result, error, formId) => [{ type: 'Response', id: formId }],
     }),
   }),
 });

@@ -1,0 +1,173 @@
+/* index.css — global base styles & design tokens */
+
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,400&family=DM+Serif+Display:ital@0;1&display=swap');
+
+:root {
+  /* Colors */
+  --color-bg: #f6f5f1;
+  --color-surface: #ffffff;
+  --color-surface-2: #f0efe9;
+  --color-surface-3: #e8e6de;
+  --color-border: #e2dfd6;
+  --color-border-focus: #5b6af0;
+  --color-primary: #5b6af0;
+  --color-primary-hover: #4a58e0;
+  --color-primary-light: #edeeff;
+  --color-primary-text: #ffffff;
+  --color-danger: #e05252;
+  --color-danger-hover: #c94444;
+  --color-danger-bg: #fff5f5;
+  --color-success: #3db87a;
+  --color-success-bg: #f0fdf6;
+  --color-text: #1a1a2e;
+  --color-text-muted: #7a7a8c;
+  --color-text-light: #a0a0b0;
+  --color-badge-bg: #edeeff;
+  --color-badge-text: #4a58e0;
+
+  /* Spacing */
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 20px;
+  --space-6: 24px;
+  --space-8: 32px;
+  --space-10: 40px;
+  --space-12: 48px;
+  --space-16: 64px;
+
+  /* Radius */
+  --radius-sm: 6px;
+  --radius-md: 10px;
+  --radius-lg: 16px;
+  --radius-xl: 20px;
+  --radius-full: 9999px;
+
+  /* Shadows */
+  --shadow-sm: 0 1px 4px rgba(0, 0, 0, 0.06);
+  --shadow-card: 0 2px 12px rgba(0, 0, 0, 0.07);
+  --shadow-card-hover: 0 8px 28px rgba(0, 0, 0, 0.12);
+  --shadow-focus: 0 0 0 3px rgba(91, 106, 240, 0.18);
+
+  /* Typography */
+  --font-body: 'DM Sans', sans-serif;
+  --font-display: 'DM Serif Display', serif;
+
+  --text-xs: 0.75rem;
+  --text-sm: 0.875rem;
+  --text-base: 1rem;
+  --text-lg: 1.125rem;
+  --text-xl: 1.25rem;
+  --text-2xl: 1.5rem;
+  --text-3xl: 1.875rem;
+  --text-4xl: 2.25rem;
+
+  /* Transitions */
+  --transition: 0.18s ease;
+  --transition-slow: 0.3s ease;
+
+  /* Layout */
+  --max-width-sm: 480px;
+  --max-width-md: 640px;
+  --max-width-lg: 720px;
+  --max-width-xl: 860px;
+
+  /* Page padding — responsive */
+  --page-px: clamp(16px, 4vw, 48px);
+  --page-py: clamp(28px, 5vw, 64px);
+}
+
+/* ─── Reset ────────────────────────────────────────────────── */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--font-body);
+  background: var(--color-bg);
+  color: var(--color-text);
+  line-height: 1.6;
+  min-height: 100vh;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+img,
+svg {
+  display: block;
+  max-width: 100%;
+}
+
+a {
+  color: var(--color-primary);
+  text-decoration: none;
+  transition: color var(--transition);
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+button {
+  cursor: pointer;
+  font-family: var(--font-body);
+  border: none;
+  background: none;
+}
+
+input,
+textarea,
+select {
+  font-family: var(--font-body);
+}
+
+/* ─── Utility ────────────────────────────────────────────── */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border-width: 0;
+}
+
+/* ─── Focus visible (accessibility) ──────────────────────── */
+:focus-visible {
+  outline: 2px solid var(--color-primary);
+  outline-offset: 2px;
+}
+
+/* ─── Scrollbar ───────────────────────────────────────────── */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: var(--color-border);
+  border-radius: var(--radius-full);
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-text-muted);
+}
+
+/* ─── Selection ───────────────────────────────────────────── */
+::selection {
+  background: var(--color-primary-light);
+  color: var(--color-primary);
+}

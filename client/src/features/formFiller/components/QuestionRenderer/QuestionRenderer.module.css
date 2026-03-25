@@ -1,0 +1,131 @@
+/* QuestionRenderer.module.css */
+
+.questionBlock {
+  background: var(--color-surface);
+  border: 1.5px solid var(--color-border);
+  border-radius: var(--radius-md);
+  padding: clamp(16px, 3vw, 24px);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+  transition:
+    border-color var(--transition),
+    box-shadow var(--transition);
+}
+
+.questionBlock:focus-within {
+  border-color: var(--color-border-focus);
+  box-shadow: var(--shadow-focus);
+}
+
+.questionBlockError {
+  border-color: var(--color-danger);
+  box-shadow: 0 0 0 3px rgba(224, 82, 82, 0.12);
+}
+
+/* ─── Label ───────────────────────────────────────────────── */
+.questionLabel {
+  font-size: var(--text-base);
+  font-weight: 500;
+  color: var(--color-text);
+  line-height: 1.45;
+}
+
+.required {
+  color: var(--color-danger);
+  margin-left: 2px;
+}
+
+/* ─── Text / Textarea inputs ──────────────────────────────── */
+.textInput {
+  width: 100%;
+  padding: 10px 14px;
+  background: var(--color-surface-2);
+  border: 1.5px solid var(--color-border);
+  border-radius: var(--radius-sm);
+  font-size: var(--text-base);
+  color: var(--color-text);
+  outline: none;
+  transition:
+    border-color var(--transition),
+    background var(--transition),
+    box-shadow var(--transition);
+  resize: vertical;
+}
+
+.textInput:focus {
+  border-color: var(--color-border-focus);
+  background: var(--color-surface);
+  box-shadow: var(--shadow-focus);
+}
+
+.textInput::placeholder {
+  color: var(--color-text-light);
+}
+
+.inputError {
+  border-color: var(--color-danger) !important;
+}
+
+/* ─── Options list ────────────────────────────────────────── */
+.optionsList {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+
+.optionLabel {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  padding: 10px 14px;
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  border: 1.5px solid transparent;
+  transition:
+    background var(--transition),
+    border-color var(--transition);
+  user-select: none;
+}
+
+.optionLabel:hover {
+  background: var(--color-surface-2);
+}
+
+/* Highlight selected state */
+.optionLabel:has(input:checked) {
+  background: var(--color-primary-light);
+  border-color: rgba(91, 106, 240, 0.25);
+}
+
+.radio,
+.checkbox {
+  accent-color: var(--color-primary);
+  width: 17px;
+  height: 17px;
+  cursor: pointer;
+  flex-shrink: 0;
+  margin: 0;
+}
+
+.optionText {
+  font-size: var(--text-sm);
+  color: var(--color-text);
+  line-height: 1.4;
+}
+
+/* ─── Error text ──────────────────────────────────────────── */
+.errorText {
+  font-size: var(--text-xs);
+  color: var(--color-danger);
+  display: flex;
+  align-items: center;
+  gap: var(--space-1);
+}
+
+/* ─── Mobile ──────────────────────────────────────────────── */
+@media (max-width: 480px) {
+  .optionLabel {
+    padding: 10px 12px;
+  }
+}
