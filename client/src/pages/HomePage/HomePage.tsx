@@ -1,13 +1,13 @@
-import { useGetFormsQuery } from '../../services/api';
 import { Link } from 'react-router-dom';
+import { useGetFormsQuery } from '../../services/api';
 import type { Form } from '../../types/form';
 import styles from './HomePage.module.css';
 
 export const HomePage = () => {
   const { data, isLoading, error } = useGetFormsQuery();
 
-  if (isLoading) return <div className={styles.empty}>Loading...</div>;
-  if (error) return <div className={styles.empty}>Something went wrong</div>;
+  if (isLoading) return <div className={styles.status}>Loading...</div>;
+  if (error) return <div className={styles.status}>Something went wrong</div>;
 
   const forms: Form[] = data?.forms ?? [];
 
@@ -32,13 +32,13 @@ export const HomePage = () => {
                 <div className={styles.formActions}>
                   <Link
                     to={`/forms/${form.id}/fill`}
-                    className={`${styles.actionLink} ${styles.actionLinkPrimary}`}
+                    className={`${styles.actionLink} ${styles.actionLinkFill}`}
                   >
                     Fill out
                   </Link>
                   <Link
                     to={`/forms/${form.id}/responses`}
-                    className={`${styles.actionLink} ${styles.actionLinkSecondary}`}
+                    className={`${styles.actionLink} ${styles.actionLinkResponses}`}
                   >
                     View responses
                   </Link>

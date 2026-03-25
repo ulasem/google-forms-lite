@@ -10,7 +10,6 @@ interface Props {
 }
 
 export const QuestionRenderer = ({ question, error, onTextChange, onCheckboxChange }: Props) => {
-  // Controlled local state for inputs
   const [textValue, setTextValue] = useState('');
   const [selectedRadio, setSelectedRadio] = useState('');
   const [checkedValues, setCheckedValues] = useState<string[]>([]);
@@ -34,7 +33,7 @@ export const QuestionRenderer = ({ question, error, onTextChange, onCheckboxChan
     <div className={`${styles.questionBlock} ${error ? styles.questionBlockError : ''}`}>
       <label className={styles.questionLabel}>
         {question.title}
-        <span className={styles.required}> *</span>
+        <span className={styles.required}>*</span>
       </label>
 
       {question.type === 'TEXT' && (
@@ -91,7 +90,7 @@ export const QuestionRenderer = ({ question, error, onTextChange, onCheckboxChan
         </div>
       )}
 
-      {error && <span className={styles.errorText}>{error}</span>}
+      {error && <span className={styles.errorText}>⚠ {error}</span>}
     </div>
   );
 };

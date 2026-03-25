@@ -1,225 +1,183 @@
-/* FormBuilderPage.module.css */
-
 .page {
   min-height: 100vh;
-  background: var(--color-bg);
-  padding: var(--page-py) var(--page-px);
+  background: var(--bg);
+  padding: 60px 24px 80px;
 }
 
 .container {
-  max-width: var(--max-width-md);
+  max-width: 680px;
   margin: 0 auto;
   display: flex;
   flex-direction: column;
-  gap: var(--space-5);
+  gap: 20px;
 }
 
-/* ─── Heading ─────────────────────────────────────────────── */
 .heading {
-  font-family: var(--font-display);
-  font-size: clamp(1.6rem, 4vw, 2.2rem);
-  font-weight: 400;
-  color: var(--color-text);
+  font-family: var(--display);
+  font-size: 2.4rem;
+  font-weight: 700;
+  color: var(--ink);
   letter-spacing: -0.02em;
-  line-height: 1.2;
+  line-height: 1.1;
 }
 
-/* ─── Form meta card ──────────────────────────────────────── */
+/* ── meta card ── */
 .metaCard {
-  background: var(--color-surface);
-  border: 1.5px solid var(--color-border);
-  border-radius: var(--radius-lg);
-  padding: clamp(18px, 3vw, 28px);
+  background: var(--surface);
+  border: 1.5px solid var(--border);
+  border-radius: var(--r-xl);
+  padding: 28px;
   display: flex;
   flex-direction: column;
-  gap: var(--space-4);
-  box-shadow: var(--shadow-sm);
+  gap: 18px;
 }
 
-/* ─── Field group ─────────────────────────────────────────── */
 .fieldGroup {
   display: flex;
   flex-direction: column;
-  gap: var(--space-1);
+  gap: 6px;
 }
 
-.fieldLabel {
-  font-size: var(--text-sm);
+.label {
+  font-size: 0.72rem;
   font-weight: 600;
-  color: var(--color-text-muted);
+  color: var(--ink-3);
   text-transform: uppercase;
-  letter-spacing: 0.05em;
+  letter-spacing: 0.07em;
 }
 
 .input,
 .textarea {
   width: 100%;
-  padding: 11px 14px;
-  background: var(--color-surface-2);
-  border: 1.5px solid var(--color-border);
-  border-radius: var(--radius-md);
-  font-size: var(--text-base);
-  color: var(--color-text);
-  transition:
-    border-color var(--transition),
-    background var(--transition),
-    box-shadow var(--transition);
+  padding: 11px 15px;
+  background: var(--bg);
+  border: 1.5px solid var(--border);
+  border-radius: var(--r-md);
+  font-size: 0.925rem;
+  color: var(--ink);
   outline: none;
+  transition: border-color var(--t), background var(--t), box-shadow var(--t);
+}
+
+.input::placeholder,
+.textarea::placeholder { color: var(--ink-4); }
+
+.input:hover,
+.textarea:hover {
+  border-color: var(--border-2);
+  background: var(--surface);
 }
 
 .input:focus,
 .textarea:focus {
-  border-color: var(--color-border-focus);
-  background: var(--color-surface);
-  box-shadow: var(--shadow-focus);
+  border-color: var(--border-focus);
+  background: var(--surface);
+  box-shadow: 0 0 0 3px rgba(13,148,136,0.12);
 }
 
 .inputError {
-  border-color: var(--color-danger) !important;
+  border-color: var(--red) !important;
+  background: var(--red-light) !important;
 }
 
 .textarea {
   resize: vertical;
   min-height: 80px;
-  line-height: 1.6;
 }
 
 .errorText {
-  font-size: var(--text-xs);
-  color: var(--color-danger);
-  margin-top: 2px;
+  font-size: 0.78rem;
+  color: var(--red);
+  font-weight: 500;
 }
 
-/* ─── Add question block ──────────────────────────────────── */
-.addQuestion {
-  background: var(--color-surface);
-  border: 1.5px solid var(--color-border);
-  border-radius: var(--radius-lg);
-  padding: clamp(16px, 3vw, 22px);
-  box-shadow: var(--shadow-sm);
+/* ── add question panel ── */
+.addPanel {
+  background: var(--surface);
+  border: 1.5px solid var(--border);
+  border-radius: var(--r-xl);
+  padding: 22px 26px;
 }
 
-.addQuestionLabel {
-  font-size: var(--text-xs);
+.addLabel {
+  font-size: 0.72rem;
   font-weight: 600;
-  color: var(--color-text-muted);
+  color: var(--ink-3);
   text-transform: uppercase;
-  letter-spacing: 0.06em;
-  margin-bottom: var(--space-3);
+  letter-spacing: 0.07em;
+  margin-bottom: 14px;
 }
 
 .typeButtons {
   display: flex;
   flex-wrap: wrap;
-  gap: var(--space-2);
+  gap: 8px;
 }
 
 .typeButton {
   padding: 8px 16px;
-  background: var(--color-badge-bg);
-  color: var(--color-badge-text);
-  border: 1.5px solid transparent;
-  border-radius: var(--radius-sm);
-  font-size: var(--text-sm);
-  font-weight: 500;
-  transition:
-    background var(--transition),
-    color var(--transition),
-    border-color var(--transition),
-    transform var(--transition),
-    box-shadow var(--transition);
+  background: var(--bg);
+  color: var(--ink-2);
+  border: 1.5px solid var(--border);
+  border-radius: var(--r-pill);
+  font-size: 0.8rem;
+  font-weight: 600;
+  transition: background var(--t), color var(--t), border-color var(--t), transform var(--t);
 }
 
 .typeButton:hover {
-  background: var(--color-primary);
-  color: white;
+  background: var(--teal);
+  color: #fff;
+  border-color: var(--teal);
   transform: translateY(-1px);
-  box-shadow: 0 3px 10px rgba(91, 106, 240, 0.25);
 }
 
-.typeButton:active {
-  transform: translateY(0);
-}
-
-/* ─── Questions list ──────────────────────────────────────── */
+/* ── questions list ── */
 .questionsList {
   display: flex;
   flex-direction: column;
-  gap: var(--space-3);
+  gap: 12px;
 }
 
-/* ─── Error / Submit area ─────────────────────────────────── */
-.submitError {
-  color: var(--color-danger);
-  font-size: var(--text-sm);
-  padding: 10px 16px;
-  background: var(--color-danger-bg);
-  border-radius: var(--radius-sm);
-  border: 1px solid rgba(224, 82, 82, 0.2);
-}
-
-/* ─── Footer bar ──────────────────────────────────────────── */
-.footer {
+/* ── bottom bar ── */
+.bottomBar {
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: flex-end;
   flex-wrap: wrap;
-  gap: var(--space-3);
+  gap: 12px;
+  padding-top: 4px;
 }
 
-.backLink {
-  display: inline-flex;
-  align-items: center;
-  gap: var(--space-2);
-  color: var(--color-text-muted);
-  font-size: var(--text-sm);
-  font-weight: 500;
-  transition: color var(--transition);
-}
-
-.backLink:hover {
-  color: var(--color-text);
-  text-decoration: none;
+.submitError {
+  flex: 1;
+  font-size: 0.85rem;
+  color: var(--red);
+  padding: 11px 16px;
+  background: var(--red-light);
+  border: 1.5px solid var(--red-border);
+  border-radius: var(--r-md);
 }
 
 .saveButton {
-  padding: 13px 30px;
-  background: var(--color-primary);
-  color: white;
-  border: none;
-  border-radius: var(--radius-md);
-  font-size: var(--text-base);
+  padding: 13px 34px;
+  background: var(--ink);
+  color: var(--bg);
+  border: 2px solid var(--ink);
+  border-radius: var(--r-pill);
+  font-size: 0.925rem;
   font-weight: 600;
-  transition:
-    background var(--transition),
-    transform var(--transition),
-    box-shadow var(--transition);
+  transition: background var(--t), color var(--t), border-color var(--t), transform var(--t);
 }
 
 .saveButton:hover:not(:disabled) {
-  background: var(--color-primary-hover);
-  transform: translateY(-1px);
-  box-shadow: 0 4px 16px rgba(91, 106, 240, 0.3);
-}
-
-.saveButton:active:not(:disabled) {
-  transform: translateY(0);
+  background: var(--teal);
+  border-color: var(--teal);
+  color: #fff;
+  transform: translateY(-2px);
 }
 
 .saveButton:disabled {
-  opacity: 0.55;
+  opacity: 0.45;
   cursor: not-allowed;
-}
-
-/* ─── Mobile ──────────────────────────────────────────────── */
-@media (max-width: 480px) {
-  .footer {
-    flex-direction: column-reverse;
-    align-items: stretch;
-  }
-
-  .saveButton {
-    width: 100%;
-    text-align: center;
-  }
 }

@@ -12,25 +12,23 @@ export const FormFillerPage = () => {
   const { answers, setTextAnswer, setCheckboxAnswer, submitted, markSubmitted, errors, validate } =
     useFormFiller();
 
-  if (isLoading) return <div className={styles.status}>Loading form...</div>;
+  if (isLoading) return <div className={styles.status}>Loading form…</div>;
   if (error || !data?.form) return <div className={styles.status}>Form not found</div>;
 
   const { form } = data;
 
   const handleSubmit = async () => {
-    if (!validate(form.questions)) return; // validation failed, errors shown inline
+    if (!validate(form.questions)) return;
     const result = await submitResponse({ formId: id!, answers });
-    if ('data' in result) {
-      markSubmitted();
-    }
+    if ('data' in result) markSubmitted();
   };
 
   if (submitted) {
     return (
       <div className={styles.page}>
-        <div className={styles.successCard}>
+        <div className={styles.successWrap}>
           <div className={styles.successIcon}>✓</div>
-          <h2 className={styles.successTitle}>Form submitted successfully!</h2>
+          <h2 className={styles.successTitle}>Submitted!</h2>
           <p className={styles.successText}>Thank you for your response.</p>
         </div>
       </div>
@@ -60,7 +58,7 @@ export const FormFillerPage = () => {
         {submitError && <p className={styles.submitError}>Submission failed. Please try again.</p>}
 
         <button className={styles.submitButton} onClick={handleSubmit} disabled={isSubmitting}>
-          {isSubmitting ? 'Submitting...' : 'Submit'}
+          {isSubmitting ? 'Submitting…' : 'Submit'}
         </button>
       </div>
     </div>

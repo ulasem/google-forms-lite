@@ -1,131 +1,109 @@
-/* QuestionRenderer.module.css */
-
 .questionBlock {
-  background: var(--color-surface);
-  border: 1.5px solid var(--color-border);
-  border-radius: var(--radius-md);
-  padding: clamp(16px, 3vw, 24px);
+  background: var(--surface);
+  border: 1.5px solid var(--border);
+  border-radius: var(--r-xl);
+  padding: 22px 24px;
   display: flex;
   flex-direction: column;
-  gap: var(--space-3);
-  transition:
-    border-color var(--transition),
-    box-shadow var(--transition);
+  gap: 12px;
+  transition: border-color var(--t), background var(--t);
 }
 
 .questionBlock:focus-within {
-  border-color: var(--color-border-focus);
-  box-shadow: var(--shadow-focus);
+  border-color: var(--border-focus);
+  background: var(--surface-2);
 }
 
 .questionBlockError {
-  border-color: var(--color-danger);
-  box-shadow: 0 0 0 3px rgba(224, 82, 82, 0.12);
+  border-color: var(--red-border) !important;
+  background: var(--red-light) !important;
 }
 
-/* ─── Label ───────────────────────────────────────────────── */
 .questionLabel {
-  font-size: var(--text-base);
+  font-size: 0.95rem;
   font-weight: 500;
-  color: var(--color-text);
+  color: var(--ink);
   line-height: 1.45;
 }
 
 .required {
-  color: var(--color-danger);
-  margin-left: 2px;
+  color: var(--red);
+  margin-left: 3px;
 }
 
-/* ─── Text / Textarea inputs ──────────────────────────────── */
+/* ── text / date inputs ── */
 .textInput {
   width: 100%;
-  padding: 10px 14px;
-  background: var(--color-surface-2);
-  border: 1.5px solid var(--color-border);
-  border-radius: var(--radius-sm);
-  font-size: var(--text-base);
-  color: var(--color-text);
+  padding: 11px 15px;
+  background: var(--bg);
+  border: 1.5px solid var(--border);
+  border-radius: var(--r-md);
+  font-size: 0.9rem;
+  color: var(--ink);
   outline: none;
-  transition:
-    border-color var(--transition),
-    background var(--transition),
-    box-shadow var(--transition);
-  resize: vertical;
+  transition: border-color var(--t), background var(--t), box-shadow var(--t);
+}
+
+.textInput::placeholder { color: var(--ink-4); }
+
+.textInput:hover {
+  border-color: var(--border-2);
 }
 
 .textInput:focus {
-  border-color: var(--color-border-focus);
-  background: var(--color-surface);
-  box-shadow: var(--shadow-focus);
-}
-
-.textInput::placeholder {
-  color: var(--color-text-light);
+  border-color: var(--border-focus);
+  background: var(--surface);
+  box-shadow: 0 0 0 3px rgba(13,148,136,0.12);
 }
 
 .inputError {
-  border-color: var(--color-danger) !important;
+  border-color: var(--red-border) !important;
 }
 
-/* ─── Options list ────────────────────────────────────────── */
+/* ── radio / checkbox options ── */
 .optionsList {
   display: flex;
   flex-direction: column;
-  gap: var(--space-2);
+  gap: 6px;
 }
 
 .optionLabel {
   display: flex;
   align-items: center;
-  gap: var(--space-3);
+  gap: 10px;
   padding: 10px 14px;
-  border-radius: var(--radius-sm);
+  background: var(--bg);
+  border: 1.5px solid var(--border);
+  border-radius: var(--r-md);
   cursor: pointer;
-  border: 1.5px solid transparent;
-  transition:
-    background var(--transition),
-    border-color var(--transition);
-  user-select: none;
+  color: var(--ink-2);
+  font-size: 0.9rem;
+  transition: background var(--t), border-color var(--t), color var(--t);
 }
 
 .optionLabel:hover {
-  background: var(--color-surface-2);
-}
-
-/* Highlight selected state */
-.optionLabel:has(input:checked) {
-  background: var(--color-primary-light);
-  border-color: rgba(91, 106, 240, 0.25);
+  background: var(--teal-light);
+  border-color: var(--teal-border);
+  color: var(--ink);
 }
 
 .radio,
 .checkbox {
-  accent-color: var(--color-primary);
-  width: 17px;
-  height: 17px;
+  accent-color: var(--teal);
+  width: 16px;
+  height: 16px;
   cursor: pointer;
   flex-shrink: 0;
-  margin: 0;
 }
 
 .optionText {
-  font-size: var(--text-sm);
-  color: var(--color-text);
-  line-height: 1.4;
+  font-size: 0.9rem;
+  line-height: 1;
 }
 
-/* ─── Error text ──────────────────────────────────────────── */
+/* ── error ── */
 .errorText {
-  font-size: var(--text-xs);
-  color: var(--color-danger);
-  display: flex;
-  align-items: center;
-  gap: var(--space-1);
-}
-
-/* ─── Mobile ──────────────────────────────────────────────── */
-@media (max-width: 480px) {
-  .optionLabel {
-    padding: 10px 12px;
-  }
+  font-size: 0.78rem;
+  color: var(--red);
+  font-weight: 500;
 }

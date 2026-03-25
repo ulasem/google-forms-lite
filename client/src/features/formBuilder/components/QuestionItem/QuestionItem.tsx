@@ -41,7 +41,7 @@ export const QuestionItem = ({
 
       {hasOptions && (
         <div className={styles.options}>
-          <p className={styles.optionsLabel}>Options:</p>
+          <p className={styles.optionsLabel}>Options</p>
           {question.options?.map((opt, i) => (
             <div key={i} className={styles.optionRow}>
               <span className={styles.optionBullet}>

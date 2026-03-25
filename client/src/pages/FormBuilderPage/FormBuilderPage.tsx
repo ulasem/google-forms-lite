@@ -5,6 +5,8 @@ import { QuestionItem } from '../../features/formBuilder/components/QuestionItem
 import type { QuestionInput } from '../../types/form';
 import styles from './FormBuilderPage.module.css';
 
+const QUESTION_TYPES: QuestionInput['type'][] = ['TEXT', 'MULTIPLE_CHOICE', 'CHECKBOX', 'DATE'];
+
 export const FormBuilderPage = () => {
   const navigate = useNavigate();
   const [createForm, { isLoading, error }] = useCreateFormMutation();
@@ -24,15 +26,11 @@ export const FormBuilderPage = () => {
     getValidatedPayload,
   } = useFormBuilder();
 
-  const QUESTION_TYPES: QuestionInput['type'][] = ['TEXT', 'MULTIPLE_CHOICE', 'CHECKBOX', 'DATE'];
-
   const handleSave = async () => {
     const payload = getValidatedPayload();
-    if (!payload) return; // validation failed, errors are shown by the hook
+    if (!payload) return;
     const result = await createForm(payload);
-    if ('data' in result) {
-      navigate('/');
-    }
+    if ('data' in result) navigate('/');
   };
 
   return (
@@ -40,27 +38,31 @@ export const FormBuilderPage = () => {
       <div className={styles.container}>
         <h1 className={styles.heading}>Create New Form</h1>
 
-        <div className={styles.fieldGroup}>
-          <input
-            className={`${styles.input} ${errors.title ? styles.inputError : ''}`}
-            placeholder="Form title *"
-            value={title}
-            onChange={e => setTitle(e.target.value)}
-          />
-          {errors.title && <span className={styles.errorText}>{errors.title}</span>}
+        <div className={styles.metaCard}>
+          <div className={styles.fieldGroup}>
+            <label className={styles.label}>Title *</label>
+            <input
+              className={`${styles.input} ${errors.title ? styles.inputError : ''}`}
+              placeholder="e.g. Customer Satisfaction Survey"
+              value={title}
+              onChange={e => setTitle(e.target.value)}
+            />
+            {errors.title && <span className={styles.errorText}>{errors.title}</span>}
+          </div>
+
+          <div className={styles.fieldGroup}>
+            <label className={styles.label}>Description</label>
+            <textarea
+              className={styles.textarea}
+              placeholder="Optional description for respondents"
+              value={description}
+              onChange={e => setDescription(e.target.value)}
+            />
+          </div>
         </div>
 
-        <div className={styles.fieldGroup}>
-          <textarea
-            className={styles.textarea}
-            placeholder="Form description (optional)"
-            value={description}
-            onChange={e => setDescription(e.target.value)}
-          />
-        </div>
-
-        <div className={styles.addQuestion}>
-          <p className={styles.addQuestionLabel}>Add question:</p>
+        <div className={styles.addPanel}>
+          <p className={styles.addLabel}>Add question</p>
           <div className={styles.typeButtons}>
             {QUESTION_TYPES.map(type => (
               <button key={type} className={styles.typeButton} onClick={() => addQuestion(type)}>
@@ -85,11 +87,12 @@ export const FormBuilderPage = () => {
           ))}
         </div>
 
-        {error && <p className={styles.submitError}>Error saving form. Please try again.</p>}
-
-        <button className={styles.saveButton} onClick={handleSave} disabled={isLoading}>
-          {isLoading ? 'Saving...' : 'Save Form'}
-        </button>
+        <div className={styles.bottomBar}>
+          {error && <p className={styles.submitError}>Error saving form. Please try again.</p>}
+          <button className={styles.saveButton} onClick={handleSave} disabled={isLoading}>
+            {isLoading ? 'Saving…' : 'Save Form'}
+          </button>
+        </div>
       </div>
     </div>
   );

@@ -7,7 +7,7 @@ export const FormResponsesPage = () => {
   const { data: formData } = useGetFormQuery(id!);
   const { data, isLoading, error } = useGetResponsesQuery(id!, { skip: !id });
 
-  if (isLoading) return <div className={styles.status}>Loading responses...</div>;
+  if (isLoading) return <div className={styles.status}>Loading responses…</div>;
   if (error) return <div className={styles.status}>Error loading responses</div>;
 
   const responses = data?.responses ?? [];
