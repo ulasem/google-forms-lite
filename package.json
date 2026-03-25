@@ -1,0 +1,17 @@
+{
+  "name": "google-forms-lite",
+  "private": true,
+  "version": "1.0.0",
+  "description": "",
+  "workspaces": [
+    "client",
+    "server"
+  ],
+  "scripts": {
+    "dev": "concurrently \"npm run dev --workspace=server\" \"npm run dev --workspace=client\"",
+    "install:all": "npm install --workspaces"
+  },
+  "dependencies": {
+    "concurrently": "^9.2.1"
+  }
+}
