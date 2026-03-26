@@ -1,17 +1,19 @@
 {
-  "name": "google-forms-lite",
-  "private": true,
+  "name": "server",
   "version": "1.0.0",
-  "description": "",
-  "workspaces": [
-    "client",
-    "server"
-  ],
+  "main": "api/graphql.js",
+  "type": "module",
   "scripts": {
-    "dev": "concurrently \"npm run dev --workspace=server\" \"npm run dev --workspace=client\"",
-    "install:all": "npm install --workspaces"
+    "dev": "nodemon src/index.js"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.14"
   },
   "dependencies": {
-    "concurrently": "^9.2.1"
+    "@apollo/server": "^4.11.0",
+    "@as-integrations/vercel": "^1.0.0",
+    "graphql": "^16.13.2",
+    "graphql-tag": "^2.12.6",
+    "uuid": "^13.0.0"
   }
 }

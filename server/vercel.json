@@ -1,0 +1,15 @@
+{
+  "version": 2,
+  "functions": {
+    "api/graphql.js": {
+      "memory": 512,
+      "maxDuration": 10
+    }
+  },
+  "routes": [
+    {
+      "src": "/graphql",
+      "dest": "/api/graphql.js"
+    }
+  ]
+}

@@ -22,7 +22,7 @@ function extractData<T>(response: { data?: T; errors?: { message: string }[] }):
 export const api = createApi({
   reducerPath: 'api',
   baseQuery: fetchBaseQuery({
-    baseUrl: 'http://localhost:4000/graphql',
+    baseUrl: import.meta.env.VITE_GRAPHQL_URL || 'http://localhost:4000/graphql',
     prepareHeaders: headers => {
       headers.set('Content-Type', 'application/json');
       return headers;
